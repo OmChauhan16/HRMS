@@ -12,8 +12,8 @@ dotenv.config();
 const app = express();
 app.use(cors({
   origin: ["http://localhost:5173",
-    "https://hrms-7ntm.onrender.com"
-
+    "https://hrms-7ntm.onrender.com",
+    "https://hrms-h6o7.onrender.com"
   ], // Allow requests from your frontend
   methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
   credentials: true // Allow cookies (if needed)
