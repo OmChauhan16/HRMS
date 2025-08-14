@@ -12,8 +12,8 @@ dotenv.config();
 const app = express();
 app.use(cors({
   origin: ["http://localhost:5173",
-    "https://hrms-6hqoxxvzb-om-s-projects-3605acbd.vercel.app/",
-    "https://hrms-git-master-om-s-projects-3605acbd.vercel.app/"
+    "https://hrms-6hqoxxvzb-om-s-projects-3605acbd.vercel.app",
+    "https://hrms-git-master-om-s-projects-3605acbd.vercel.app"
   ], // Allow requests from your frontend
   methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
   credentials: true // Allow cookies (if needed)
