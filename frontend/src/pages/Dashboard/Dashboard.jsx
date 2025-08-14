@@ -33,6 +33,7 @@ import {
 import "./Dashboard.css";
 import Sidebar from "../Sidebar/Sidebar";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const options = [
   'None',
@@ -84,7 +85,7 @@ const Dashboard = () => {
 
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/candidates")
+    fetch(`${API_URL}/api/candidates`)
       .then((res) => res.json())
       .then((data) => setCandidates(data))
       .catch((err) => console.error("Error fetching candidates:", err));
@@ -128,96 +129,32 @@ const Dashboard = () => {
     handleMenuClose();
   };
 
-  // const handleDelete = async () => {
-  //   console.log("Delete candidate:", selectedCandidate);
-  //   const response = await fetch("http://localhost:5000/api/candidates", {
-  //     method: "POST",
-  //     body: formData, // No headers for JSON — browser sets correct multipart boundary
-  //   });
-  //   handleMenuClose();
-  // };
-
-  // const handleDownloadResume = () => {
-  //   if (selectedCandidate && selectedCandidate.resume) {
-  //     const link = document.createElement('a');
-  //     link.href = `http://localhost:5000/api/candidates/download/${selectedCandidate.resume}`;
-  //     link.download = selectedCandidate.resume;
-  //     link.click();
-  //   } else {
-  //     alert("Resume not available for this candidate.");
-  //   }
-  //   handleMenuClose1();
-  // };
-
-
-  // const handleSubmit = async () => {
-  //   const candidateData = {
-  //     name: newCandidate.name,
-  //     email: newCandidate.email,
-  //     phone: newCandidate.phone,
-  //     position: newCandidate.position,
-  //     experience: newCandidate.experience,
-  //   };
-
-
-
-
-
-  //   try {
-  //     const response = await fetch("http://localhost:5000/api/candidates", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(candidateData),
-  //     });
-
-  //     const data = await response.json();
-
-  //     if (response.ok) {
-  //       setCandidates((prev) => [...prev, data]);
-  //       setNewCandidate({
-  //         name: "",
-  //         email: "",
-  //         phone: "",
-  //         position: "",
-  //         experience: "",
-  //         resume: null,
-  //         agree: false,
-  //       });
-  //       handleClose();
-  //     } else {
-  //       console.error("Failed to add candidate:", data.error);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error adding candidate:", error);
-  //   }
-  // };
-
 
   const handleDelete = async () => {
-  if (!selectedCandidate?._id) {
-    alert("No candidate selected for deletion.");
-    return;
-  }
-
-  try {
-    const response = await fetch(`http://localhost:5000/api/candidates/${selectedCandidate._id}`, {
-      method: "DELETE",
-    });
-
-    if (response.ok) {
-      // Remove candidate from state to update UI
-      setCandidates((prev) => prev.filter(c => c._id !== selectedCandidate._id));
-      alert("Candidate deleted successfully.");
-    } else {
-      const errorData = await response.json();
-      alert("Failed to delete candidate: " + errorData.error);
+    if (!selectedCandidate?._id) {
+      alert("No candidate selected for deletion.");
+      return;
     }
-  } catch (error) {
-    alert("Error deleting candidate: " + error.message);
-  }
 
-  handleMenuClose1(); // Close the action menu
-};
+    try {
+      const response = await fetch(`${API_URL}/api/candidates/${selectedCandidate._id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        // Remove candidate from state to update UI
+        setCandidates((prev) => prev.filter(c => c._id !== selectedCandidate._id));
+        alert("Candidate deleted successfully.");
+      } else {
+        const errorData = await response.json();
+        alert("Failed to delete candidate: " + errorData.error);
+      }
+    } catch (error) {
+      alert("Error deleting candidate: " + error.message);
+    }
+
+    handleMenuClose1(); // Close the action menu
+  };
 
 
   const handleDownloadResume = () => {

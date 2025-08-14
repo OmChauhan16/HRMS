@@ -3,6 +3,7 @@ import Main from "../Main/Main";
 import AddLeaveForm from "./AddLeaveForm"; // You’ll create this like your AddEmployeeForm
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Leave = () => {
   const [openAddForm, setOpenAddForm] = useState(false);
@@ -12,7 +13,7 @@ const Leave = () => {
   const fetchLeavesByDate = async (date) => {
     const formattedDate = date.toISOString().split("T")[0]; // YYYY-MM-DD
     try {
-      const res = await fetch(`http://localhost:5000/api/leaves?date=${formattedDate}`);
+      const res = await fetch(`${API_URL}/api/leaves?date=${formattedDate}`);
       const data = await res.json();
       setFilteredData(data);
     } catch (err) {
@@ -30,7 +31,7 @@ const Leave = () => {
       <div style={{ flex: 2 }}>
         <Main
           title="Leaves"
-          apiUrl={`http://localhost:5000/api/leaves?date=${selectedDate.toISOString().split("T")[0]}`}
+          apiUrl={`${API_URL}/api/leaves?date=${selectedDate.toISOString().split("T")[0]}`}
           showStatusFilter={false}
           tableHeaders={["Name", "Date", "Reason", "Status"]}
           data={filteredData} // Pass filtered data directly

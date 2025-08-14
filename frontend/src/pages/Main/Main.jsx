@@ -26,9 +26,10 @@ import {
 } from "@mui/material";
 import { Message, Notifications, MoreVert, UploadFile } from "@mui/icons-material";
 import Sidebar from "../Sidebar/Sidebar";
-import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { Search } from "@mui/icons-material";
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Main = ({
   title,
   employees = [], // safe default
@@ -89,7 +90,7 @@ const Main = ({
 
   const handleLeaveSubmit = async () => {
     try {
-      await fetch("http://localhost:5000/api/leaves", {
+      await fetch(`${API_URL}/api/leaves`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(leaveForm)
@@ -273,7 +274,7 @@ const Main = ({
               value={leaveForm.leaveDate || ""}
               onChange={(e) => handleLeaveFormChange("leaveDate", e.target.value)}
             />
-           
+
 
             <TextField
               label="Documents"

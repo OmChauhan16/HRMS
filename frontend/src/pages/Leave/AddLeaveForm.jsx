@@ -11,6 +11,7 @@ import {
     MenuItem,
     TextField
 } from "@mui/material";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const AddLeaveForm = ({ open, onClose, onSave }) => {
     const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ const AddLeaveForm = ({ open, onClose, onSave }) => {
     const [employees, setEmployees] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/employees")
+        fetch(`${API_URL}/api/employees`)
             .then((res) => res.json())
             .then((data) => setEmployees(data))
             .catch((err) => console.error(err));
@@ -37,7 +38,7 @@ const AddLeaveForm = ({ open, onClose, onSave }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await fetch("http://localhost:5000/api/leaves", {
+        await fetch(`${API_URL}/api/leaves`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData)
