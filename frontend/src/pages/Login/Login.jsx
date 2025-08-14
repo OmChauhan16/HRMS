@@ -40,12 +40,12 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="login-icon-box">
-        ☐ <span>Logo</span>
+        {/* ☐ <span>Logo</span> */}
       </div>
       <div className="login-box">
         <div className="left-section-login">
           <img
-            src={`${import.meta.env.PUBLIC_URL}/register.png`}
+            src={`/register.jpg`}
             alt="Profile"
             className="register-pic"
             style={{ height: "200px", width: "100%" }}

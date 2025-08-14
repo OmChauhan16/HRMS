@@ -132,3 +132,7 @@
     text-decoration: underline;
   }
   
+  .register-pic{
+    border-radius: 10px;
+    margin-left: 32px;
+  }
