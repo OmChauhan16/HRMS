@@ -1,0 +1,86 @@
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+  }
+
+  
+  /* Main Content */
+  .main-content {
+    flex: 1;
+    padding: 20px;
+    background: #f8f9fa;
+  }
+  
+  /* Navbar */
+  /* Search Candidate Input */
+.search-candidate {
+  max-width: 150px; /* Adjust width as needed */
+  background: white;
+  border-radius: 8px;
+}
+
+  /* Candidate Title */
+.candidate-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Right Icons Section */
+.right-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Icon Styling */
+.icon {
+  color: #4B0082;
+  font-size: 24px;
+}
+
+/* Profile Picture */
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #4B0082;
+  cursor: pointer;
+}
+
+  .navbar-toolbar {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .filters {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .dropdown {
+    width: 150px;
+  }
+  
+  .right-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  /* Table */
+  .table-container {
+    margin-top: 20px;
+    border-radius: 50%;
+  }
+  
+  .table-header {
+    background: #4B0082;
+    color: white;
+  }
+  
+  .table-header th {
+    color: white;
+  }
+  
